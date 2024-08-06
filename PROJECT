@@ -7,4 +7,14 @@ layout:
 - go.kubebuilder.io/v4
 projectName: myoperator
 repo: github.com/ChihkAnchor/myoperator
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: zhangzhikai.com.cn
+  group: database
+  kind: MySQL
+  path: github.com/ChihkAnchor/myoperator/api/v1
+  version: v1
 version: "3"
