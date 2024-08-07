@@ -56,6 +56,7 @@ func (r *MySQL) ValidateCreate(ctx context.Context, obj runtime.Object) (warning
 
 // ValidateUpdate implements webhook.Validator so a webhook will be registered for the type
 func (r *MySQL) ValidateUpdate(ctx context.Context, oldObj, newObj runtime.Object) (warnings admission.Warnings, err error) {
+	mysqllog.Info("validate update", "name", r.Name)
 	newMySQL := newObj.(*MySQL)
 	oldMySQL := oldObj.(*MySQL)
 	if !reflect.DeepEqual(oldMySQL.Spec, newMySQL.Spec) {
@@ -67,6 +68,7 @@ func (r *MySQL) ValidateUpdate(ctx context.Context, oldObj, newObj runtime.Objec
 
 // ValidateDelete implements webhook.Validator so a webhook will be registered for the type
 func (r *MySQL) ValidateDelete(ctx context.Context, obj runtime.Object) (warnings admission.Warnings, err error) {
+	mysqllog.Info("validate delete", "name", r.Name)
 	return nil, nil
 }
 
