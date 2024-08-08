@@ -5,7 +5,8 @@
 
 
 ## Description
-分析文档：http://www.zhangzhikai.com.cn/archives/b6d2a4d5-4db2-40db-9600-bfd88fe5f767
+文档：http://www.zhangzhikai.com.cn/archives/b6d2a4d5-4db2-40db-9600-bfd88fe5f767
+
 该operator实现的功能：
 * 创建一个 MySQL 实例。
 * 管理 MySQL 实例的副本数（Replica）。
