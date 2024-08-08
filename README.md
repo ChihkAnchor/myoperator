@@ -1,8 +1,16 @@
 # myoperator
-// TODO(user): Add simple overview of use/purpose
+>注：本代码仅供技术分享交流使用，请勿用于商业用途。
+
+该项目自动管理 MySQL 数据库实例的生命周期，包括创建、更新和删除 MySQL 实例
+
 
 ## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+分析文档：http://www.zhangzhikai.com.cn/archives/b6d2a4d5-4db2-40db-9600-bfd88fe5f767
+该operator实现的功能：
+* 创建一个 MySQL 实例。
+* 管理 MySQL 实例的副本数（Replica）。
+* 当 CRD（Custom Resource Definition）更改时，自动更新 MySQL 实例。
+* 删除 MySQL 实例。
 
 ## Getting Started
 
