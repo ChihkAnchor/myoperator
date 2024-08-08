@@ -36,6 +36,7 @@ var mysqllog = logf.Log.WithName("mysql-webhook-resource")
 func (r *MySQL) SetupWebhookWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewWebhookManagedBy(mgr).
 		For(r).
+		WithValidator(r).
 		Complete()
 }
 
@@ -50,15 +51,16 @@ var _ webhook.CustomValidator = &MySQL{}
 
 // ValidateCreate implements webhook.Validator so a webhook will be registered for the type
 func (r *MySQL) ValidateCreate(ctx context.Context, obj runtime.Object) (warnings admission.Warnings, err error) {
-	mysqllog.Info("validate create", "name", r.Name)
-	return nil, r.validateMySQL()
+	objMySQL := obj.(*MySQL)
+	mysqllog.Info("validate create", "name", objMySQL.Name)
+	return nil, objMySQL.validateMySQL()
 }
 
 // ValidateUpdate implements webhook.Validator so a webhook will be registered for the type
 func (r *MySQL) ValidateUpdate(ctx context.Context, oldObj, newObj runtime.Object) (warnings admission.Warnings, err error) {
-	mysqllog.Info("validate update", "name", r.Name)
 	newMySQL := newObj.(*MySQL)
 	oldMySQL := oldObj.(*MySQL)
+	mysqllog.Info("validate update", "name", newMySQL.Name)
 	if !reflect.DeepEqual(oldMySQL.Spec, newMySQL.Spec) {
 		return nil, apierrors.NewBadRequest("update is not allowed")
 	}
@@ -68,7 +70,8 @@ func (r *MySQL) ValidateUpdate(ctx context.Context, oldObj, newObj runtime.Objec
 
 // ValidateDelete implements webhook.Validator so a webhook will be registered for the type
 func (r *MySQL) ValidateDelete(ctx context.Context, obj runtime.Object) (warnings admission.Warnings, err error) {
-	mysqllog.Info("validate delete", "name", r.Name)
+	objMySQL := obj.(*MySQL)
+	mysqllog.Info("validate delete", "name", objMySQL.Name)
 	return nil, nil
 }
 

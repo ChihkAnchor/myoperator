@@ -1,0 +1,6 @@
+apiVersion: database.zhangzhikai.com.cn/v1
+kind: MySQL
+metadata:
+  name: mysql-sample
+spec:
+  size: 1

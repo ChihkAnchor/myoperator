@@ -1,11 +1,38 @@
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  labels:
-    app.kubernetes.io/name: myoperator
-    app.kubernetes.io/managed-by: kustomize
   name: manager-role
 rules:
+- apiGroups:
+  - database.zhangzhikai.com.cn
+  resources:
+  - mysqls
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - database.zhangzhikai.com.cn
+  resources:
+  - mysqls/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - database.zhangzhikai.com.cn
+  resources:
+  - mysqls/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 - apiGroups: [""]
   resources: ["pods"]
   verbs: ["get", "list", "watch"]

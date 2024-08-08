@@ -103,7 +103,7 @@ func (r *MySQLReconciler) deploymentForMySQL(m *databasev1alpha1.MySQL) *appsv1.
 				Spec: corev1.PodSpec{
 					Containers: []corev1.Container{{
 						Name:  "mysql",
-						Image: "mysql:5.7",
+						Image: "swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/mysql:5.7.33",
 						Env: []corev1.EnvVar{
 							{
 								Name:  "MYSQL_ROOT_PASSWORD",

@@ -72,8 +72,8 @@ func main() {
 			BindAddress: metricsAddr,
 		},
 		WebhookServer: webhook.NewServer(webhook.Options{
-			Port:       80,
-			CertDir:    "/",
+			Port:       9443,
+			CertDir:    "/webhook/serving-certs",
 			CertName:   "tls.crt",
 			KeyName:    "tls.key",
 			WebhookMux: http.NewServeMux(),
